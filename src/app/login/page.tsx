@@ -19,9 +19,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="mb-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzx3zQOPO8oRFEGwl08rr-pSOK-49BFzyU5CXOmmCjRNcxH5buX68SgRcPYqGtM-ACsGBrTmxhRxOojZI7rUsmSo_oDoNQK_Ay6Kt0jtGlSlQht3zvVfY_049aBz-6QChUTRFkR_T02KgikJRUFX1b3onGa5wU-Vvq3-FGHB1SBL3ImKPRijP7cDpYlHOSS7pffLLxJqWLMuYPG7ahfFfbk8aB_Ucxti--nJAC6_yrOQTq4cTJ5Mqc4lT72TPE-Ul"
+              src="/logo.png"
               alt="MedicIA Logo"
-              className="h-12 w-auto mb-6"
+              className="h-10 w-auto mb-6 object-contain"
             />
             <h1 className="text-2xl font-semibold text-primary tracking-tight">Bienvenido a MedicIA</h1>
             <p className="text-sm text-muted-foreground mt-2">
@@ -110,42 +110,20 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <div className="flex gap-3">
               <Info className="text-primary h-5 w-5 shrink-0 mt-0.5" />
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Contacta a tu administrador si tienes problemas para acceder al tablero.
+                Contacta al administrador si tienes problemas para acceder a la aplicación.
               </p>
             </div>
           </div>
         </div>
 
         {/* Right Side: Visual Panel */}
-        <div className="hidden md:block md:w-1/2 relative bg-primary overflow-hidden">
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-          <div className="relative h-full w-full flex flex-col items-center justify-center p-12 text-center text-white">
-            <div className="relative z-10 space-y-8">
-              <div className="w-full aspect-square max-w-[320px] mx-auto rounded-full bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0s_jj5rK2lxM7dIydM3jS58Kj2corcHRV4_jFdQPardUkX0s7iC1t3-3BPey9NAw5ZEkoqetFUQVKdxijsUvtcbbLL1UkKcjmF2K-4YPRWnbRjEfgK4GqIRIQpeoy9e0jVNrY-ldwIE-flYmB3fv9ydrvnr1agewc0bOsfYNc7xeh_lGu9CHoEyhBeucFDqzDXYXVpLbYsd7h2UKmoT6tap5LBN4Tb8d1pu7jzp66p5ULhVR5VEE"
-                  alt="Doctor portrait"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="space-y-3">
-                <h2 className="text-4xl font-bold">Centro Médico</h2>
-                <p className="text-lg text-primary-foreground/80 max-w-xs mx-auto">
-                  Gestionando la salud del futuro con inteligencia y eficiencia operativa.
-                </p>
-              </div>
-            </div>
-            <div className="absolute bottom-10 left-0 right-0">
-              <div className="flex items-center justify-center gap-4 opacity-60">
-                <div className="h-[1px] w-8 bg-white"></div>
-                <span className="text-xs uppercase tracking-widest font-medium">MedicIA Ecosystem</span>
-                <div className="h-[1px] w-8 bg-white"></div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute top-[-5%] right-[-5%] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
+        <div className="hidden md:block md:w-1/2 relative overflow-hidden bg-[#0052CC] min-h-[600px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/login-banner.png"
+            alt="MedicIA Centro Médico"
+            className="w-full h-full object-cover object-top"
+          />
         </div>
       </main>
     </div>

@@ -18,9 +18,9 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
           <div className="mb-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzx3zQOPO8oRFEGwl08rr-pSOK-49BFzyU5CXOmmCjRNcxH5buX68SgRcPYqGtM-ACsGBrTmxhRxOojZI7rUsmSo_oDoNQK_Ay6Kt0jtGlSlQht3zvVfY_049aBz-6QChUTRFkR_T02KgikJRUFX1b3onGa5wU-Vvq3-FGHB1SBL3ImKPRijP7cDpYlHOSS7pffLLxJqWLMuYPG7ahfFfbk8aB_Ucxti--nJAC6_yrOQTq4cTJ5Mqc4lT72TPE-Ul"
+              src="/logo.png"
               alt="MedicIA Logo"
-              className="h-12 w-auto mb-6"
+              className="h-10 w-auto mb-6 object-contain"
             />
             <h1 className="text-2xl font-semibold text-primary tracking-tight">Crear una cuenta</h1>
             <p className="text-sm text-muted-foreground mt-2">

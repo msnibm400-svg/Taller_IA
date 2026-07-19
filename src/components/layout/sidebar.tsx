@@ -25,31 +25,23 @@ export function Sidebar() {
 
   const linkClass = (path: string) => {
     const active = isActive(path)
-    return `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-150 active:scale-[0.98] ${
+    return `flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all duration-150 active:scale-[0.98] ${
       active
-        ? 'bg-primary/10 text-primary font-semibold'
-        : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+        ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
+        : 'text-blue-100/75 hover:bg-white/10 hover:text-white'
     }`
   }
 
   return (
-    <aside className="relative left-0 h-full w-[260px] flex flex-col p-4 gap-4 bg-card border-r border-border z-50 shrink-0">
+    <aside className="relative left-0 h-full w-[260px] flex flex-col p-4 gap-4 bg-[#1E3A8A] text-white border-r border-blue-900/40 z-50 shrink-0">
       {/* Logo Area */}
-      <div className="flex items-center gap-3 px-2 mb-6">
+      <div className="px-2 mb-4 h-12 flex items-center justify-start overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzx3zQOPO8oRFEGwl08rr-pSOK-49BFzyU5CXOmmCjRNcxH5buX68SgRcPYqGtM-ACsGBrTmxhRxOojZI7rUsmSo_oDoNQK_Ay6Kt0jtGlSlQht3zvVfY_049aBz-6QChUTRFkR_T02KgikJRUFX1b3onGa5wU-Vvq3-FGHB1SBL3ImKPRijP7cDpYlHOSS7pffLLxJqWLMuYPG7ahfFfbk8aB_Ucxti--nJAC6_yrOQTq4cTJ5Mqc4lT72TPE-Ul"
-          alt="MedicIA Logo"
-          className="h-8 w-auto"
+          src="/logo-sidebar.png"
+          alt="MedicIA Centro Médico Inteligente"
+          className="h-28 w-auto max-w-none object-contain object-left -ml-12 shrink-0 mix-blend-screen"
         />
-        <div className="border-l border-border pl-3 py-0.5">
-          <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider leading-none">
-            Centro
-          </p>
-          <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider leading-none mt-1">
-            Médico
-          </p>
-        </div>
       </div>
 
       <nav className="flex-1 space-y-1">
@@ -78,12 +70,12 @@ export function Sidebar() {
       <div className="mt-auto space-y-4">
         <Link
           href="/citas?new=true"
-          className="w-full py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98]"
+          className="w-full py-2.5 bg-primary text-primary-foreground font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors active:scale-[0.98] shadow-sm"
         >
           <Plus className="w-5 h-5" />
           <span className="text-sm">Nueva Cita</span>
         </Link>
-        <div className="border-t border-border pt-4 space-y-1">
+        <div className="border-t border-blue-800/60 pt-4 space-y-1">
           <Link href="/configuracion" className={linkClass('/configuracion')}>
             <Settings className="w-5 h-5" />
             <span className="text-sm">Configuración</span>
