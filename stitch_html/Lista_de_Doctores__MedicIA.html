@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicIA - Gestión de Doctores</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3f484d",
+                        "primary-fixed-dim": "#85d0f2",
+                        "surface-container-high": "#e6e8eb",
+                        "on-primary-fixed": "#001f2a",
+                        "surface-tint": "#006684",
+                        "outline": "#6f787e",
+                        "primary-fixed": "#bde9ff",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0f6e8c",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7fafc",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7fafc",
+                        "secondary-container": "#87f6b6",
+                        "tertiary": "#3f4f64",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f1f4f6",
+                        "on-primary-fixed-variant": "#004d64",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#57677d",
+                        "surface-container": "#eceef1",
+                        "on-primary-container": "#c1eaff",
+                        "on-tertiary-container": "#d6e6ff",
+                        "inverse-primary": "#85d0f2",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#181c1e",
+                        "secondary-fixed-dim": "#6ddc9e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary-container": "#007145",
+                        "on-secondary-fixed-variant": "#005230",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7fafc",
+                        "on-surface": "#181c1e",
+                        "secondary": "#006d42",
+                        "outline-variant": "#bfc8cd",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002111",
+                        "surface-variant": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadd",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "primary": "#00556d",
+                        "secondary-fixed": "#8af8b9",
+                        "on-tertiary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-gutter": "20px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "stack-gap": "16px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .clinical-shadow {
+            box-shadow: 0px 4px 12px rgba(15, 110, 140, 0.08);
+        }
+        .modal-overlay {
+            background-color: rgba(24, 28, 30, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="hidden md:flex fixed left-0 h-full w-[260px] flex-col p-4 gap-stack-gap bg-surface-container-lowest border-r border-outline-variant z-50">
+<div class="flex items-center gap-3 px-2 mb-4">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm" data-icon="medical_services">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">MedicIA</h1>
+<p class="text-xs text-on-surface-variant leading-tight">Centro Médico</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Tablero</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Pacientes</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span>Citas</span>
+</a>
+<!-- Active Tab: Doctores -->
+<a class="flex items-center gap-3 bg-surface-container-high text-on-surface font-semibold rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Doctores</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Usuarios</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Configuración</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2 font-body-md text-body-md text-error" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[260px] flex flex-col min-h-screen">
+<!-- TopNavBar (Predicted Component) -->
+<header class="flex items-center justify-between h-14 px-container-padding sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Buscar por nombre o especialidad..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-bold text-on-surface leading-none">Dr. Julian Garcia</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border border-outline-variant" data-alt="Close-up portrait of a professional male doctor in his late 40s with a kind expression, wearing a crisp white medical coat and a stethoscope around his neck. The background is a clean, softly lit modern medical office with hints of blue glass and clinical precision. The lighting is bright and airy, reflecting a professional healthcare setting with high-end clinical-modern aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-YYG4VeHzLGij41nSf4rQEKbpxxB7vYOK8PBcsAzivuWrhOZurnpfkLIsLpW3tmUOAmzAEISabal0HDGEaSwqtKH-bl7mL7ntP3mNiONOrUXQn3Pu1XVxvgzdwPG61UlRHnc3E5tP3Rwmlp7hDlhNgiTVFR3fOpiBISuPizj-5Y8sMJguaSuSscdrLnCNPI9JFyBoiS_iou-g2mqN5RMD_gLeU5g2GyZEB5Ozv2QAUkbuRr0k1Yo"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-container-padding flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Gestión de Doctores</h2>
+<p class="text-body-md text-on-surface-variant">Administra el personal médico y sus especialidades.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md transition-transform active:scale-95 clinical-shadow" onclick="openModal()">
+<span class="material-symbols-outlined text-body-lg" data-icon="add">add</span>
+                    Nuevo doctor
+                </button>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden clinical-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant border-b border-outline-variant">
+<th class="px-6 py-4 font-label-md uppercase tracking-wider">Nombre del Doctor</th>
+<th class="px-6 py-4 font-label-md uppercase tracking-wider">Especialidad</th>
+<th class="px-6 py-4 font-label-md uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4 font-label-md uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Headshot of a smiling female doctor with a professional demeanor, wearing a navy blue medical uniform. She is standing in a brightly lit hallway of a contemporary hospital with glass partitions and soft teal accents. The photograph is sharp and clean, capturing a sense of reliable medical expertise and clinical-modern efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD3b1K0YrjXP02r3Kwo5ojD4syphUBRbhnJqLFGffy49uP4oj2drGtRNisZRlMm2UGcGfrjjYv7ywwsWuxv9TcX1EUA5py_dAuugmwIADfoS6wBD87RuvsdnrUnEMHnHdV_5oZh9I3eJSPKaB0z2TmpgxH18PyajQEqz3QJQGGhZb_-Wb9KD0Jl4Kl56L895ZtnJgTjbLhx017g2Vqot_OC8XeePfl-qbgDObiCnseyX8Hd1jnfTk"/>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Dra. Elena Martínez</p>
+<p class="text-xs text-on-surface-variant">ID: MED-2901</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-on-surface">Cardiología</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container/20 text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Activo
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a male specialist doctor in a professional grey scrub suit, looking confident and approachable. The setting is a minimalist, high-tech examination room with soft directional lighting that creates a clean and clinical atmosphere. The color palette is dominated by whites, light greys, and medical blues, emphasizing a high-standard healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMfE1lTBs1KlJTmyqvmQhGk_R1wM9IX_W7_VTvznzsPMZuDvLA_fpxpr5XldT-ZuM_zlYvDhVCnPccDndvCg9weGNZwziaxnpfxgVFgdrMLBVQE-ZOIpRG6BtgLkhSPNW8uj-CIEoCzxXod6_m2V1FiXMQDSwJ8uo0NY4YwSv5u7SAcYOpaJTwDVj3WbWksznyxFC9cHk1xLNfFauqiE1HY9aV3KL7-6PFG9mzHrroLP4NTh1QnWw"/>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Dr. Ricardo Silva</p>
+<p class="text-xs text-on-surface-variant">ID: MED-3142</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-on-surface">Neurología</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container/20 text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Activo
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A focused female medical professional with her hair tied back, wearing a white coat and glasses, looking at a digital tablet with a subtle smile. The background is a blurred modern clinic with bright white lighting and organized medical equipment. The scene exudes professionalism, precision, and the clean aesthetic of a high-end medical facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdaTqu09m_McWBN1p3Cr6c5Q5-AvMvTikIFLvEoCssT-nCol9PACOpfapktJV4sj3ZReyOmc8J9PwTDQPeX7PaKsvdiciW3fWv7ycFUzFqERPvJAe5uNxi2Zz7CVfglgHHQ7x2_YatRqdP1b2RhW7kAU3OrYToCtqfL4Wz5WJpl97ebKIcoJdi_VEV-FH5T5CHoUR6YDT_ZhMXjITwpz_CfUeDvLlIaqKwF8AnOMR3Hi2dhsRy8tA"/>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Dra. Claudia Vaca</p>
+<p class="text-xs text-on-surface-variant">ID: MED-1088</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-on-surface">Pediatría</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error-container/30 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5"></span>
+                                        Inactivo
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a senior male doctor with grey hair and a warm, experienced look. He is wearing a medical white coat and standing in a modern, sunlit medical research laboratory. The style is minimalist and corporate, with a clean color palette of white, steel, and soft blues, conveying a sense of long-term trust and medical excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVaxWBgV0bSXq3AD-NcsYkofUtb7zZ-IBaHMSjMHCB3DreaJcIjc-3zroqmm7EK0U_qxrwF1K21fxHZnQ0vfjfm0fmoXCypfYICToNEoskHOJOLiYrxvUdtQwJey9887Z7Rz95utmZm66CU34Un_AVDSYMKH4Ah_c3UCM-IduXahTDA1Y1Bey-1az7WBgtb3pNBJjucYVomSIq7v3FXWWKSQLUBjlk-rb1w0GXN8cpwAXsIRncSjY"/>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Dr. Sergio Torres</p>
+<p class="text-xs text-on-surface-variant">ID: MED-4509</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-on-surface">Oncología</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container/20 text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                        Activo
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between">
+<p class="text-body-md text-on-surface-variant">Mostrando 4 de 12 doctores</p>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal: Nuevo Doctor -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" id="doctorModal">
+<div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+<div class="relative bg-surface-container-lowest w-full max-w-md rounded-xl clinical-shadow overflow-hidden transform transition-all scale-100">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Registrar Nuevo Doctor</h3>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeModal()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<form class="p-6 space-y-stack-gap">
+<div>
+<label class="block text-label-md text-on-surface-variant mb-1.5">Nombre Completo</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Ej. Dra. Martha López" type="text"/>
+</div>
+<div>
+<label class="block text-label-md text-on-surface-variant mb-1.5">Especialidad</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-primary/20 transition-all outline-none">
+<option value="">Seleccionar especialidad...</option>
+<option value="cardiology">Cardiología</option>
+<option value="dermatology">Dermatología</option>
+<option value="pediatrics">Pediatría</option>
+<option value="oncology">Oncología</option>
+<option value="neurology">Neurología</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<button class="w-full py-2.5 px-4 border border-outline-variant rounded-lg text-on-surface font-label-md hover:bg-surface-container transition-colors" onclick="closeModal()" type="button">
+                        Cancelar
+                    </button>
+<button class="w-full py-2.5 px-4 bg-primary text-on-primary rounded-lg font-label-md clinical-shadow transition-transform active:scale-95" type="submit">
+                        Guardar Registro
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function openModal() {
+            const modal = document.getElementById('doctorModal');
+            modal.classList.remove('hidden');
+            modal.querySelector('.relative').classList.add('scale-100');
+            modal.querySelector('.relative').classList.remove('scale-95', 'opacity-0');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('doctorModal');
+            modal.querySelector('.relative').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 150);
+        }
+
+        // Close on ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body></html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicIA - Nueva Cita</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3f484d",
+                    "primary-fixed-dim": "#85d0f2",
+                    "surface-container-high": "#e6e8eb",
+                    "on-primary-fixed": "#001f2a",
+                    "surface-tint": "#006684",
+                    "outline": "#6f787e",
+                    "primary-fixed": "#bde9ff",
+                    "error": "#ba1a1a",
+                    "primary-container": "#00556d",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-bright": "#f7fafc",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "background": "#f7fafc",
+                    "secondary-container": "#87f6b6",
+                    "tertiary": "#3f4f64",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-fixed-variant": "#004d64",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#57677d",
+                    "surface-container": "#eceef1",
+                    "on-primary-container": "#c1eaff",
+                    "on-tertiary-container": "#d6e6ff",
+                    "inverse-primary": "#85d0f2",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#181c1e",
+                    "secondary-fixed-dim": "#6ddc9e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-secondary-container": "#007145",
+                    "on-secondary-fixed-variant": "#005230",
+                    "on-primary": "#ffffff",
+                    "surface": "#f7fafc",
+                    "on-surface": "#181c1e",
+                    "secondary": "#006d42",
+                    "outline-variant": "#bfc8cd",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#002111",
+                    "surface-variant": "#e0e3e5",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d8dadd",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "primary": "#00556d",
+                    "secondary-fixed": "#8af8b9",
+                    "on-tertiary-fixed-variant": "#38485d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-gutter": "20px",
+                    "container-padding": "24px",
+                    "unit": "4px",
+                    "stack-gap": "16px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #bfc8cd; border-radius: 10px; }
+        .clinical-shadow { box-shadow: 0px 4px 12px rgba(15, 110, 140, 0.08); }
+        .modal-overlay { backdrop-filter: blur(4px); background-color: rgba(0, 0, 0, 0.3); }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="docked left-0 h-full w-[260px] border-r border-outline-variant bg-surface-container-lowest flex flex-col p-4 gap-stack-gap z-50">
+<div class="flex items-center gap-3 mb-6 px-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">MedicIA</h1>
+<p class="text-xs text-on-surface-variant">Centro Médico</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Tablero</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md text-body-md">Pacientes</span>
+</a>
+<a class="flex items-center gap-3 bg-surface-container-high text-on-surface font-semibold rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-body-md text-body-md">Citas</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-body-md text-body-md">Doctores</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Usuarios</span>
+</a>
+</nav>
+<button class="w-full py-2.5 bg-primary text-white rounded-lg font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+            Nueva Cita
+        </button>
+<div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+<a class="flex items-center gap-3 text-error hover:bg-error-container/20 rounded-lg px-3 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex items-center justify-between h-14 px-container-padding sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-1.5 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Buscar citas, pacientes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold">Dr. Julian Garcia</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a Hispanic male doctor in his 40s wearing a clean white clinical coat and a stethoscope. He has a warm, confident smile, set against a blurred medical office background with soft clinical blue lighting. The overall aesthetic is professional, modern, and high-quality, matching a premium medical SaaS interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5f9DxsKzKLfxyEttkQIhXvL6jwxW41-jXSjp0JvbW5uYPfBEcS-ffvBO2653BY54grUy9bYnM4SD7S8g5yVe6nmDqQUiwhnNHHRMCDg5_dcf8JiA1bN9sGVgJNfb2FmfAw7yul9eICA58tojqI1sapbqFNyw2KnE6o1Of5LJl-byKKClo07HvF9YhzPmTgMzRxdbeM-cGMaLM-0bHohMGL2_KtZf0nzNs7rm9oJnqXKhM8HCZtrI"/>
+</div>
+</div>
+</header>
+<!-- Main Content (Background Appointment List) -->
+<main class="flex-1 overflow-y-auto p-container-padding bg-background custom-scrollbar">
+<div class="max-w-6xl mx-auto space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Agenda del Día</h2>
+<p class="text-on-surface-variant font-body-md">Martes, 24 de Octubre de 2023</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-sm font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+                            Hoy
+                        </button>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden">
+<button class="px-3 py-2 bg-surface-container-high border-r border-outline-variant"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-3 py-2 bg-surface-container-lowest"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Bento Grid Appointment Display -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Statistics Card -->
+<div class="md:col-span-3 bg-white p-5 rounded-xl border border-outline-variant clinical-shadow flex flex-col justify-between">
+<span class="text-on-surface-variant font-label-md">Citas Confirmadas</span>
+<div class="mt-4">
+<h3 class="text-3xl font-bold text-primary">24</h3>
+<p class="text-xs text-secondary font-medium">+12% vs ayer</p>
+</div>
+</div>
+<!-- Main List Canvas -->
+<div class="md:col-span-9 bg-white rounded-xl border border-outline-variant clinical-shadow overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Hora</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Paciente</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Doctor</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-6 py-4 font-semibold text-primary">09:00 AM</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">RM</div>
+<span class="font-medium">Ricardo Mendoza</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Dra. Elena Ruiz</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20">Confirmada</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-6 py-4 font-semibold text-primary">10:30 AM</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xs">SC</div>
+<span class="font-medium">Sofía Castro</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Dr. Julian Garcia</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error/10 text-error border border-error/20">Pendiente</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- New Appointment Modal (The Core Request) -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 modal-overlay overflow-y-auto" id="appointment-modal">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-xl clinical-shadow border border-outline-variant overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-6 py-5 border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_add_on</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Nueva Cita Médica</h3>
+<p class="text-xs text-on-surface-variant">Complete los detalles para agendar al paciente</p>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="document.getElementById('appointment-modal').style.display='none'">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Body (Form) -->
+<form class="p-6 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Patient Search / Autocomplete -->
+<div class="col-span-full space-y-2">
+<label class="font-label-md text-on-surface-variant block">Paciente</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70">person_search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md" placeholder="Buscar por nombre o DNI..." type="text" value="Sofía Castro"/>
+<!-- Autocomplete Dropdown (Simulated) -->
+<div class="absolute top-full left-0 right-0 mt-1 bg-white border border-outline-variant rounded-lg clinical-shadow overflow-hidden z-10 hidden group-focus-within:block">
+<div class="px-4 py-2 hover:bg-surface-container cursor-pointer flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-xs font-bold">SC</div>
+<div>
+<p class="text-sm font-semibold">Sofía Castro</p>
+<p class="text-xs text-on-surface-variant">DNI: 45.291.002</p>
+</div>
+</div>
+<div class="px-4 py-2 hover:bg-surface-container cursor-pointer flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center"><span class="material-symbols-outlined text-sm">person_add</span></div>
+<span class="text-sm text-primary font-medium">Crear nuevo paciente</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Doctor Selector -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block">Doctor Responsable</label>
+<div class="relative">
+<select class="w-full pl-10 pr-10 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none transition-all text-body-md">
+<option>Dr. Julian Garcia — Cardiología</option>
+<option>Dra. Elena Ruiz — Pediatría</option>
+<option>Dr. Marcos Torres — Traumatología</option>
+<option>Dra. Lucía Méndez — Medicina General</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70">medical_information</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Status Selector -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block">Estado Inicial</label>
+<div class="relative">
+<select class="w-full pl-10 pr-10 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none transition-all text-body-md">
+<option>Confirmada</option>
+<option selected="">Pendiente</option>
+<option>Consulta en curso</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70">bookmark</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Date/Time Picker -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block">Fecha</label>
+<div class="relative">
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md" type="date" value="2023-10-25"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70">calendar_month</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block">Horario</label>
+<div class="relative">
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md" type="time" value="10:30"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70">schedule</span>
+</div>
+</div>
+<!-- Reason Field -->
+<div class="col-span-full space-y-2">
+<label class="font-label-md text-on-surface-variant block">Motivo de la Consulta</label>
+<textarea class="w-full px-4 py-2.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-body-md resize-none" placeholder="Descripción breve del síntoma o motivo de visita..." rows="3">Control post-operatorio y revisión de rutina tras cirugía menor de rodilla.</textarea>
+</div>
+</div>
+<!-- Appointment Preview Hint -->
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<p class="text-xs font-semibold text-on-surface">Información de Disponibilidad</p>
+<p class="text-[11px] text-on-surface-variant">El Dr. Garcia tiene el quirófano reservado de 08:00 a 10:00. Este horario (10:30) está disponible para consulta externa.</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant">
+<button class="px-6 py-2.5 text-primary font-semibold hover:bg-surface-container rounded-lg transition-colors" onclick="document.getElementById('appointment-modal').style.display='none'" type="button">
+                            Cancelar
+                        </button>
+<button class="px-8 py-2.5 bg-primary text-white font-semibold rounded-lg clinical-shadow active:scale-[0.98] transition-all hover:bg-primary-container" type="submit">
+                            Guardar
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Modal Backdrop Close
+        window.onclick = function(event) {
+            const modal = document.getElementById('appointment-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+
+        // Form Submission Prevention (Demo)
+        document.querySelector('form').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Cita guardada con éxito.');
+            document.getElementById('appointment-modal').style.display = 'none';
+        }
+    </script>
+</body></html>

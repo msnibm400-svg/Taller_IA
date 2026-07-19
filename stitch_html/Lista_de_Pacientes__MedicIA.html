@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedicIA - Lista de Pacientes</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3f484d",
+                    "primary-fixed-dim": "#85d0f2",
+                    "surface-container-high": "#e6e8eb",
+                    "on-primary-fixed": "#001f2a",
+                    "surface-tint": "#006684",
+                    "outline": "#6f787e",
+                    "primary-fixed": "#bde9ff",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0f6e8c",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-bright": "#f7fafc",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "background": "#f7fafc",
+                    "secondary-container": "#87f6b6",
+                    "tertiary": "#3f4f64",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-low": "#f1f4f6",
+                    "on-primary-fixed-variant": "#004d64",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#57677d",
+                    "surface-container": "#eceef1",
+                    "on-primary-container": "#c1eaff",
+                    "on-tertiary-container": "#d6e6ff",
+                    "inverse-primary": "#85d0f2",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#181c1e",
+                    "secondary-fixed-dim": "#6ddc9e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-secondary-container": "#007145",
+                    "on-secondary-fixed-variant": "#005230",
+                    "on-primary": "#ffffff",
+                    "surface": "#f7fafc",
+                    "on-surface": "#181c1e",
+                    "secondary": "#006d42",
+                    "outline-variant": "#bfc8cd",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#002111",
+                    "surface-variant": "#e0e3e5",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d8dadd",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "primary": "#00556d",
+                    "secondary-fixed": "#8af8b9",
+                    "on-tertiary-fixed-variant": "#38485d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-gutter": "20px",
+                    "container-padding": "24px",
+                    "unit": "4px",
+                    "stack-gap": "16px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .clinical-shadow {
+            box-shadow: 0px 4px 12px rgba(15, 110, 140, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex h-screen overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="docked left-0 h-full w-[260px] border-r border-outline-variant bg-surface-container-lowest flex flex-col p-4 gap-stack-gap z-50">
+<div class="flex items-center gap-3 px-2 mb-4">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">MedicIA</h1>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Centro Médico</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items Mapping from JSON -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Tablero</span>
+</a>
+<!-- Active State for "Pacientes" -->
+<a class="flex items-center gap-3 bg-surface-container-high text-on-surface font-semibold rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md text-body-md">Pacientes</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-body-md text-body-md">Citas</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-body-md text-body-md">Doctores</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Usuarios</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold py-2.5 rounded-lg active:scale-[0.98] transition-all mb-4">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-label-md text-label-md">Nueva Cita</span>
+</button>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg px-3 py-2" href="#">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="font-body-md text-body-md">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-hidden relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex items-center justify-between h-14 px-container-padding sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Buscar pacientes por nombre o documento..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-on-surface">Dr. Julian Garcia</p>
+<p class="text-[10px] text-on-surface-variant">Administrador</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed object-cover clinical-shadow" data-alt="A professional portrait of a male doctor in his late 40s wearing a clean white lab coat and a blue stethoscope. He has a warm, confident smile and short dark hair. The background is a brightly lit, modern medical office with clinical blue accents and soft natural light. High-end medical photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdtoM7-76lwV-6WRBYwqgUHI7Va2Wpq-Cnqzkcmk8UKZFqjPrVZmz19cxFLPJ-6WsQ7hB0hKnoM8PuuF8nHH6Q2D5htfYpH2rNuiJIitF0hqEGdzziQkTVDSvsNWTwnq2DozEAkOz5tvghiVUjuP-uFKdbnYFvPjVC1Pmz8df0BaxVG_TsRV6mkys950vDaoZP-NksP1n3r6mecCSLdgsZEvuhecKqpKh12VB2Q9xc4jUuUHh2dR4"/>
+</div>
+</div>
+</header>
+<!-- Page Header & Actions -->
+<div class="p-container-padding pb-0">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Pacientes</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión y registro centralizado de la base de datos de pacientes.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-lg clinical-shadow hover:opacity-90 active:scale-95 transition-all font-semibold" onclick="toggleModal('new-patient-modal')">
+<span class="material-symbols-outlined">person_add</span>
+<span>Nuevo paciente</span>
+</button>
+</div>
+<!-- Stats/Filter Bar (Asymmetric Layout Hint) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Total Pacientes</p>
+<p class="text-headline-sm font-headline-sm">1,284</p>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">how_to_reg</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Activos</p>
+<p class="text-headline-sm font-headline-sm">842</p>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Citas Hoy</p>
+<p class="text-headline-sm font-headline-sm">24</p>
+</div>
+</div>
+<!-- Mini Filter Buttons -->
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors" title="Exportar CSV">
+<span class="material-symbols-outlined text-on-surface-variant">download</span>
+</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors" title="Filtrar">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-auto px-container-padding pb-container-padding">
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden clinical-shadow">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Nombre</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Documento</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Teléfono</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Fecha de Nacimiento</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Table Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">MA</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Miguel Angel Rodriguez</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">1.020.445.892</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+57 312 456 7890</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">12 Mayo 1985</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-bold uppercase">Activo</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold text-xs">LP</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Lucia Perez Gomez</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">52.881.004</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+57 300 221 4455</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">28 Abr 1992</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-bold uppercase">Activo</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary font-bold text-xs">CH</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Carlos Hernandez</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">79.560.123</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+57 321 987 6543</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">05 Nov 1978</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[11px] font-bold uppercase">Inactivo</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">EM</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Elena Morales</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">1.152.001.332</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+57 315 555 1212</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">15 Jun 1999</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-bold uppercase">Activo</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error font-bold text-xs">JR</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Jorge Ruiz</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">80.234.567</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+57 318 765 4321</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">22 Sep 1965</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full bg-error-container/30 text-on-error-container text-[11px] font-bold uppercase">Pendiente</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="bg-surface-container-low border-t border-outline-variant px-6 py-4 flex items-center justify-between">
+<p class="text-label-md text-on-surface-variant">Mostrando 5 de 1,284 pacientes</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container transition-colors">Siguiente</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal: Nuevo Paciente -->
+<div class="fixed inset-0 z-[60] hidden" id="new-patient-modal">
+<div class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm transition-opacity" onclick="toggleModal('new-patient-modal')"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-surface rounded-2xl clinical-shadow overflow-hidden transform transition-all">
+<div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Registrar Nuevo Paciente</h3>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="toggleModal('new-patient-modal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Nombre Completo</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Ej: Juan Perez" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Documento de Identidad</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Ej: 1.000.000.000" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Teléfono</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Ej: +57 300 000 0000" type="tel"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Fecha de Nacimiento</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" type="date"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Correo Electrónico</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="nombre@ejemplo.com" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Dirección de Residencia</label>
+<textarea class="w-full bg-white border border-outline-variant rounded-lg p-2.5 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none" placeholder="Calle 123 #45-67, Ciudad" rows="2"></textarea>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex justify-end gap-3">
+<button class="px-4 py-2 text-on-surface-variant font-semibold hover:bg-surface-container transition-colors rounded-lg" onclick="toggleModal('new-patient-modal')">Cancelar</button>
+<button class="px-6 py-2 bg-primary text-on-primary font-semibold rounded-lg clinical-shadow active:scale-95 transition-all">Guardar Paciente</button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.querySelector('.transform').classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                modal.querySelector('.transform').classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 150);
+            }
+        }
+
+        // Row click effect
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                const name = row.querySelector('.font-semibold').innerText;
+                console.log(`Abriendo expediente de: ${name}`);
+                // Future expansion: Redirect to patient details
+            });
+        });
+
+        // Search highlight simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(value) ? '' : 'none';
+            });
+        });
+    </script>
+</body></html>

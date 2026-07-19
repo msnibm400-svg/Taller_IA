@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="es" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3f484d",
+                        "primary-fixed-dim": "#85d0f2",
+                        "surface-container-high": "#e6e8eb",
+                        "on-primary-fixed": "#001f2a",
+                        "surface-tint": "#006684",
+                        "outline": "#6f787e",
+                        "primary-fixed": "#bde9ff",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0f6e8c",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7fafc",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7fafc",
+                        "secondary-container": "#87f6b6",
+                        "tertiary": "#3f4f64",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f1f4f6",
+                        "on-primary-fixed-variant": "#004d64",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#57677d",
+                        "surface-container": "#eceef1",
+                        "on-primary-container": "#c1eaff",
+                        "on-tertiary-container": "#d6e6ff",
+                        "inverse-primary": "#85d0f2",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#181c1e",
+                        "secondary-fixed-dim": "#6ddc9e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary-container": "#007145",
+                        "on-secondary-fixed-variant": "#005230",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7fafc",
+                        "on-surface": "#181c1e",
+                        "secondary": "#006d42",
+                        "outline-variant": "#bfc8cd",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002111",
+                        "surface-variant": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadd",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "primary": "#00556d",
+                        "secondary-fixed": "#8af8b9",
+                        "on-tertiary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-gutter": "20px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "stack-gap": "16px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-background min-h-screen flex items-center justify-center p-6">
+<!-- Main Login Card Block -->
+<main class="w-full max-w-4xl bg-surface-container-lowest rounded-xl clinical-shadow overflow-hidden flex flex-col md:flex-row min-h-[600px] border border-outline-variant">
+<!-- Left Side: Login Form -->
+<div class="w-full md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+<!-- Branding -->
+<div class="mb-12">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzx3zQOPO8oRFEGwl08rr-pSOK-49BFzyU5CXOmmCjRNcxH5buX68SgRcPYqGtM-ACsGBrTmxhRxOojZI7rUsmSo_oDoNQK_Ay6Kt0jtGlSlQht3zvVfY_049aBz-6QChUTRFkR_T02KgikJRUFX1b3onGa5wU-Vvq3-FGHB1SBL3ImKPRijP7cDpYlHOSS7pffLLxJqWLMuYPG7ahfFfbk8aB_Ucxti--nJAC6_yrOQTq4cTJ5Mqc4lT72TPE-Ul" alt="MedicIA Logo" class="h-12 w-auto mb-6">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Bienvenido a MedicIA</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Ingrese sus credenciales para acceder al centro médico.</p>
+</div>
+<!-- Form -->
+<form id="loginForm" class="space-y-6">
+<div class="space-y-2">
+<label for="email" class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Correo Electrónico</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
+<input type="email" id="email" required="" placeholder="ejemplo@medicia.com" class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 input-focus-ring transition-all">
+</div>
+</div>
+<div class="space-y-2">
+<label for="password" class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input type="password" id="password" required="" placeholder="••••••••" class="w-full pl-10 pr-10 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 input-focus-ring transition-all">
+<button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input type="checkbox" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Recordarme</span>
+</label>
+<a href="#" class="font-label-md text-label-md text-primary hover:underline">¿Olvidó su contraseña?</a>
+</div>
+<button type="submit" class="w-full bg-primary-container hover:bg-primary text-white font-headline-sm text-headline-sm py-3.5 rounded-lg transition-all active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+<span class="">Iniciar sesión</span>
+<span class="material-symbols-outlined">login</span>
+</button>
+</form>
+<!-- Help Text -->
+<div class="mt-12 p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Contacta a tu administrador si olvidaste tu contraseña o tienes problemas para acceder al tablero.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Right Side: Visual Panel -->
+<div class="hidden md:block md:w-1/2 relative bg-primary overflow-hidden">
+<!-- Background Pattern/Illustration -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="relative h-full w-full flex flex-col items-center justify-center p-12 text-center text-white">
+<div class="relative z-10 space-y-8">
+<!-- Image Placeholder for abstract health illustration -->
+<div class="w-full aspect-square max-w-[320px] mx-auto rounded-full bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden flex items-center justify-center">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0s_jj5rK2lxM7dIydM3jS58Kj2corcHRV4_jFdQPardUkX0s7iC1t3-3BPey9NAw5ZEkoqetFUQVKdxijsUvtcbbLL1UkKcjmF2K-4YPRWnbRjEfgK4GqIRIQpeoy9e0jVNrY-ldwIE-flYmB3fv9ydrvnr1agewc0bOsfYNc7xeh_lGu9CHoEyhBeucFDqzDXYXVpLbYsd7h2UKmoT6tap5LBN4Tb8d1pu7jzp66p5ULhVR5VEE" alt="Professional portrait of a friendly male doctor" class="w-full h-full object-cover">
+</div>
+<div class="space-y-3">
+<h2 class="font-display-lg text-display-lg">Centro Médico</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim max-w-xs mx-auto">
+                            Gestionando la salud del futuro con inteligencia y eficiencia operativa.
+                        </p>
+</div>
+</div>
+<!-- Footer-->
+<div class="absolute bottom-10 left-0 right-0">
+<div class="flex items-center justify-center gap-4 opacity-60">
+<div class="h-[1px] w-8 bg-white"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">MedicIA Ecosystem</span>
+<div class="h-[1px] w-8 bg-white"></div>
+</div>
+</div>
+</div>
+<!-- Floating Decorative Elements -->
+<div class="absolute top-[-5%] right-[-5%] w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-primary-container/40 rounded-full blur-3xl"></div>
+</div>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('loginForm');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Visual feedback for button click
+                submitBtn.innerHTML = `
+                    <span class="material-symbols-outlined animate-spin">progress_activity</span>
+                    <span>Procesando...</span>
+                `;
+                submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+
+                // Simulate login delay
+                setTimeout(() => {
+                    // This is where redirection or error handling would occur
+                    console.log('Intento de inicio de sesión detectado');
+                    submitBtn.innerHTML = `
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Acceso concedido</span>
+                    `;
+                    submitBtn.classList.remove('bg-primary-container');
+                    submitBtn.classList.add('bg-secondary');
+                }, 1500);
+            });
+
+            // Toggle password visibility (simplified)
+            const togglePass = form.querySelector('button[type="button"]');
+            const passInput = document.getElementById('password');
+            togglePass.addEventListener('click', () => {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                togglePass.innerHTML = `<span class="material-symbols-outlined text-[20px]">${isPass ? 'visibility_off' : 'visibility'}</span>`;
+            });
+        });
+    </script>
+
+</body></html>
